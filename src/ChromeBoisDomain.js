@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { verifyAndRestore } from 'sinon';
 import { drawChromeBoiAtCoords, toggleCycling, resize } from './canvasHelpers.js'
 
 
@@ -10,6 +11,7 @@ export default class ChromeBoisDomain extends Component {
      * function that has been provided and is already imported
      * (`drawChromeBoiAtCoords` expects two arguments, an x and a y coordinate)
      */
+    drawChromeBoiAtCoords(event.pageX,event.pageY)
   }
   
   /* TODO: Create an event handler which, when fired, invokes the provided
@@ -28,6 +30,10 @@ export default class ChromeBoisDomain extends Component {
     return (
       <canvas 
         onMouseMove={this.handleMouseMove}
+        onClick={toggleCycling}
+        onKeyDown={(e) => {
+          e.key == 'a' ? resize('+') : resize('-')
+        }}
         width='900'
         height='600'
         tabIndex="0">
